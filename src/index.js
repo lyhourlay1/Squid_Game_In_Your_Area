@@ -1,8 +1,19 @@
+import Example from "./scripts/example"
+import GameView from "./scripts/game_view"
+import Game from "./scripts/game"
+
 window.addEventListener('DOMContentLoaded', function (event) {
-    // const canvas = document.getElementById("game-canvas")
-    // const ctx = canvas.getContext('2d');
-    // const v = new GameView(ctx);
-    // console.log("Dom fully loaded and parsed")
+    
     //v.start(ctx)
     console.log("webpack is working!")
+    const main = document.getElementById("main")
+    const exam = new Example(main)
+
+    const canvas = document.getElementById("game-canvas")
+    canvas.width = Game.DIM_X;
+    canvas.height = Game.DIM_Y;
+    const canvasEl = canvas.getContext('2d');
+    
+    const game = new Game();
+    const v = new GameView(game,canvasEl);
 })
