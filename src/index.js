@@ -16,4 +16,5 @@ window.addEventListener('DOMContentLoaded', function (event) {
     
     const game = new Game();
     const v = new GameView(game,canvasEl);
+    v.start()
 })
