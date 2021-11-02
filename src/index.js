@@ -17,4 +17,5 @@ window.addEventListener('DOMContentLoaded', function (event) {
     const game = new Game();
     const v = new GameView(game,canvasEl);
     v.start()
+    setInterval(function () { document.getElementById("hwa").play() }, 6000 * Math.random())
 })

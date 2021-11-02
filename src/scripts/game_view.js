@@ -7,16 +7,19 @@ const speed = 3
 const canvaWidth = 1000
 const canvaHeight =600
 const startingPoint = 40
+
+
 class GameView {
     constructor(game, canvas) {
-       this.game = game
-       this.canvas = canvas
-       this.rocks =[]
-       this.addFinishLine(canvas)
-       this.addRocks(canvas)
-       this.addDoll(canvas)
+        this.game = game
+        this.canvas = canvas
+        this.rocks =[]
+        this.addFinishLine(canvas)
+        this.addRocks(canvas)
+        this.addDoll(canvas)
     }
 }
+GameView.finishLine = 30
 
 GameView.prototype.keyHandler= function (player) {
     player.draw([500,540], this.canvas)
@@ -41,21 +44,27 @@ GameView.prototype.keyHandler= function (player) {
 }
 
 GameView.prototype.isValidMove = function(dir, player){
-    // let result =true
-    let maxWidth= player.size[0]
-    let maxHeight= player.size[1]
     let newPos = [player.position[0] + dir[0], player.position[1] + dir[1]]
-    // console.log(newPos[1] + maxHeight)
-    // console.log(this.canvas)
-    if ((newPos[0] + maxWidth) > canvaWidth || (newPos[1] + maxHeight) > canvaHeight || newPos[0]< 0 || newPos[1]<0) return false
-    for(let i=0; i< this.rocks.length; i++){
-        maxHeight = player.size[1]
-        let rockX = this.rocks[i].position[0]
-        let rockY = this.rocks[i].position[1]
-        if (rockY < player.position[1]) maxHeight = this.rocks[i].size[1] 
-        if (Math.abs(newPos[1] - rockY) < maxHeight && Math.abs(newPos[0] - rockX) < maxWidth)  return false
+    //check if player new postion has passed the finished line
+    if (this.game.isOver(this.canvas, newPos)){
+        //replay button 
+        console.log("replay")
     }
-    return true
+    else{
+        let maxWidth= player.size[0]
+        let maxHeight= player.size[1]
+       
+        if ((newPos[0] + maxWidth) > canvaWidth || (newPos[1] + maxHeight) > canvaHeight || newPos[0]< 0 || newPos[1]<0) return false
+        for(let i=0; i< this.rocks.length; i++){
+            maxHeight = player.size[1]
+            let rockX = this.rocks[i].position[0]
+            let rockY = this.rocks[i].position[1]
+            if (rockY < player.position[1]) maxHeight = this.rocks[i].size[1] 
+            if (Math.abs(newPos[1] - rockY) < maxHeight && Math.abs(newPos[0] - rockX) < maxWidth)  return false
+        }
+        return true
+    }
+
 }
 GameView.prototype.move = function (dir, player) {
     this.canvas.clearRect(player.position[0], player.position[1], player.size[0] , player.size[1] )
@@ -67,8 +76,8 @@ GameView.prototype.start = function (ctx) {
     //console.log(Player)
     const player = new Player([500,540])
     this.keyHandler(player)
-    
 }
+
 
 GameView.prototype.addDoll = function (canvas) {
     let imageRock = new Image()
@@ -79,8 +88,8 @@ GameView.prototype.addDoll = function (canvas) {
 }
 GameView.prototype.addFinishLine = function (canvas) {
     canvas.beginPath();
-    canvas.moveTo(0, 30);
-    canvas.lineTo(1000, 30);
+    canvas.moveTo(0, GameView.finishLine);
+    canvas.lineTo(1000, GameView.finishLine);
     canvas.stroke();
 }
 GameView.prototype.addRocks = function (canvas) {

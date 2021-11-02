@@ -1,3 +1,4 @@
+import GameView from "./game_view"
 
 class Game {
     constructor() {
@@ -5,16 +6,19 @@ class Game {
     }
 }
 
-Game.prototype.isOver = function () {
-    if(this.win || this.lose) console.log('Game Over')
-    
+Game.prototype.isOver = function (canvas, newPos) {
+    if(this.win(newPos)) return true
+    return false
 }
 
-Game.prototype.win = function (params) {
-    
+Game.prototype.win = function (newPos) {
+    if (newPos[1]< GameView.finishLine){
+        return true
+    }
+    return false
 }
 Game.prototype.lose = function (params) {
-    
+    return false
 }
 
 
