@@ -1,8 +1,9 @@
 const Game = require("./Game")
 // const Pieces = require("./pieces")
 
-const speed = 3
 import Player from "./player"
+import Rock from "./rock"
+const speed = 3
 class GameView {
     constructor(game, canvas) {
        this.game = game
@@ -21,28 +22,51 @@ GameView.prototype.keyHandler= function (player) {
     player.draw([500,540], this.canvas)
     window.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowDown'){
-            this.move([0, speed], player)
+            if (this.isValidMove([0, speed], player)) {
+                this.move([0, speed], player)
+            }
         }
         else if (event.key === 'ArrowUp') {
-            this.move([0,-1*speed], player)
+            if (this.isValidMove([0, -1*speed], player)){
+                this.move([0, -1*speed], player)
+            }
         }
+            
         else if (event.key === 'ArrowRight') {
-            this.move([1,0],player)
+            if(this.isValidMove([speed, 0],player)) this.move([speed,0],player)
         }
         else if (event.key === 'ArrowLeft') {
-            this.move([-1,0],player)
+            if(this.isValidMove([-1*speed, 0], player)) this.move([-1 * speed,0],player)
         }
     })
 }
 
-GameView.prototype.isValidMove = function(player, ){
-
+GameView.prototype.isValidMove = function(dir, player){
+    // let result =true
+    let newPos = [player.position[0] + dir[0], player.position[1] + dir[1]]
+    console.log(this.rocks)
+    console.log(newPos)
+    for(let i=0; i< this.rocks.length; i++){
+        let maxHeight= player.size[1]
+        let maxWidth= player.size[0]
+        let rockX = this.rocks[i].position[0]
+        let rockY = this.rocks[i].position[1]
+        if (rockY < player.position[1]) maxHeight = this.rocks[i].size[1] 
+        if (Math.abs(newPos[1] - rockY) < maxHeight && Math.abs(newPos[0] - rockX) < maxWidth)  return false
+    }
+    return true
+}
+GameView.prototype.move = function (dir, player) {
+    this.canvas.clearRect(player.position[0], player.position[1], player.size[0] , player.size[1] )
+    player.position = [player.position[0] + dir[0], player.position[1] + dir[1]]
+    player.draw(player.position, this.canvas)
 }
 
-GameView.prototype.move = function (dir, player) {
-    player.position = [player.position[0]+ dir[0], player.position[1] + dir[1]]
-    this.canvas.clearRect(player.position[0], player.position[1], player.size[0] - dir[0], player.size[1] - dir[1])
-    player.draw(player.position, this.canvas)
+GameView.prototype.start = function (ctx) {
+    //console.log(Player)
+    const player = new Player([500,540])
+    this.keyHandler(player)
+    
 }
 
 GameView.prototype.addDoll = function (canvas) {
@@ -62,22 +86,13 @@ GameView.prototype.addRocks = function (canvas) {
     // generate 100  postions 
     let posArr = []
     let i=0
-    while(i< 20){
+    while(i< 15){
         let x = 1000 * Math.random()
         let y = (600-100) * Math.random() + 30
-        let imageRock = new Image()
-        imageRock.addEventListener('load', function () {
-            canvas.drawImage(imageRock, x,y, imageRock.width*0.01, imageRock.height*0.01)
-        }, false)
-        imageRock.src ="../pics/rock.png"
+        let rock = new Rock([x,y])
+        rock.draw([x,y] , this.canvas)
+        this.rocks.push(rock)
         i++
     }
 }
-GameView.prototype.start = function (ctx) {
-    //console.log(Player)
-    const player = new Player([500,540])
-    this.keyHandler(player)
-
-}
-
 export default GameView
