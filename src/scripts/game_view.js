@@ -4,6 +4,9 @@ const Game = require("./Game")
 import Player from "./player"
 import Rock from "./rock"
 const speed = 3
+const canvaWidth = 1000
+const canvaHeight =600
+const startingPoint = 40
 class GameView {
     constructor(game, canvas) {
        this.game = game
@@ -12,9 +15,6 @@ class GameView {
        this.addFinishLine(canvas)
        this.addRocks(canvas)
        this.addDoll(canvas)
-       
-       //this.addPlayer(canvas)
-       //this.start()
     }
 }
 
@@ -30,8 +30,7 @@ GameView.prototype.keyHandler= function (player) {
             if (this.isValidMove([0, -1*speed], player)){
                 this.move([0, -1*speed], player)
             }
-        }
-            
+        } 
         else if (event.key === 'ArrowRight') {
             if(this.isValidMove([speed, 0],player)) this.move([speed,0],player)
         }
@@ -43,12 +42,14 @@ GameView.prototype.keyHandler= function (player) {
 
 GameView.prototype.isValidMove = function(dir, player){
     // let result =true
+    let maxWidth= player.size[0]
+    let maxHeight= player.size[1]
     let newPos = [player.position[0] + dir[0], player.position[1] + dir[1]]
-    console.log(this.rocks)
-    console.log(newPos)
+    // console.log(newPos[1] + maxHeight)
+    // console.log(this.canvas)
+    if ((newPos[0] + maxWidth) > canvaWidth || (newPos[1] + maxHeight) > canvaHeight || newPos[0]< 0 || newPos[1]<0) return false
     for(let i=0; i< this.rocks.length; i++){
-        let maxHeight= player.size[1]
-        let maxWidth= player.size[0]
+        maxHeight = player.size[1]
         let rockX = this.rocks[i].position[0]
         let rockY = this.rocks[i].position[1]
         if (rockY < player.position[1]) maxHeight = this.rocks[i].size[1] 
@@ -88,7 +89,7 @@ GameView.prototype.addRocks = function (canvas) {
     let i=0
     while(i< 15){
         let x = 1000 * Math.random()
-        let y = (600-100) * Math.random() + 30
+        let y = (600-100) * Math.random() + startingPoint
         let rock = new Rock([x,y])
         rock.draw([x,y] , this.canvas)
         this.rocks.push(rock)
