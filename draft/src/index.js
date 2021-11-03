@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         let game = new Game();
         let v = new GameView(game,canvasEl);
         v.start()
-        setInterval( () =>{ 
+        window.interval = setInterval( () =>{ 
             //document.getElementById("hwa").play() 
             v.addGreenLight()
             setTimeout(()=>{

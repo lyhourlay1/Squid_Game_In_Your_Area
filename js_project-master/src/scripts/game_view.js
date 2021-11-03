@@ -10,13 +10,14 @@ const startingPoint = 40
 
 
 class GameView {
-    constructor(game, canvas) {
+    constructor(game, canvas, image) {
         this.game = game
         this.canvas = canvas
         this.rocks =[]
         this.players =[]
         this.canvaRef
         this.addFinishLine(canvas)
+        this.imageRock = image
         this.addRocks(canvas)
         this.addDoll(canvas)
         this.addPlayer()
@@ -32,6 +33,7 @@ GameView.prototype.keyHandler= function (player) {
             }
         }
         else if (event.key === 'ArrowUp') {
+            console.log(this.isValidMove([0, speed], player))
             if (this.isValidMove([0, -1*speed], player)){
                 this.move([0, -1*speed], player)
             }
@@ -50,9 +52,11 @@ GameView.prototype.isValidMove = function(dir, player){
     //check if player new postion has passed the finished line
     if (this.game.isOver(this.canvas, newPos, this.canvaRef)){
         //replay button 
-        this.canvas.clearRect(0,0, canvaWidth,canvaHeight)
-        this.rocks=[]
-        this.players[0].position = [500,540]
+        // clearInterval(window.interval)
+        // this.canvas.clearRect(0,0, canvaWidth,canvaHeight)
+        // this.rocks=[]
+        // this.players[0].position = [500,540]
+        window.location.reload()
         console.log("replay")
     }
     else{
@@ -60,26 +64,29 @@ GameView.prototype.isValidMove = function(dir, player){
         let maxHeight= player.size[1]
        
         if ((newPos[0] + maxWidth) > canvaWidth || (newPos[1] + maxHeight) > canvaHeight || newPos[0]< 0 || newPos[1]<0) return false
+        
+        // debugger
         for(let i=0; i< this.rocks.length; i++){
             maxHeight = player.size[1]
             let rockX = this.rocks[i].position[0]
             let rockY = this.rocks[i].position[1]
-            if (rockY < player.position[1]) maxHeight = this.rocks[i].size[1] 
-            if (Math.abs(newPos[1] - rockY) < maxHeight && Math.abs(newPos[0] - rockX) < maxWidth)  return false
+            if ((rockY + this.rocks[i].size[1]) < newPos[1]) maxHeight = this.rocks[i].size[1]
+            if (Math.abs(newPos[1] - rockY) < (maxHeight+speed) && Math.abs(newPos[0] - rockX) < (maxWidth+speed))  return false
         }
         return true
     }
 
 }
 GameView.prototype.move = function (dir, player) {
-    // this.canvas.clearRect(player.position[0], player.position[1], player.size[0]+5 , player.size[1]+5 )
-    this.canvas.clearRect(0,30, canvaWidth, canvaHeight)
+    //this.canvas.clearRect(player.position[0], player.position[1], player.size[0]+5 , player.size[1]+5 )
+    this.canvas.clearRect(0, startingPoint+30, canvaWidth, canvaHeight)
     player.position = [player.position[0] + dir[0], player.position[1] + dir[1]]
     player.draw(player.position, this.canvas)
+    console.log(this.rocks)
     this.rocks.forEach(el=>{
         el.draw(el.position, this.canvas)
     })
-    this.addDoll(this.canvas)
+    // this.addDoll(this.canvas)
 }
 
 GameView.prototype.start = function (ctx) {
@@ -96,11 +103,11 @@ GameView.prototype.addPlayer= function() {
     }}
 
 GameView.prototype.addDoll = function (canvas) {
-    let imageRock = new Image()
-    imageRock.addEventListener('load', function () {
-        canvas.drawImage(imageRock, 500, 0, imageRock.width * 0.03, imageRock.height * 0.03)
+    let imageDoll = new Image()
+    imageDoll.addEventListener('load', function () {
+        canvas.drawImage(imageDoll, 500, 0, imageDoll.width * 0.03, imageDoll.height * 0.03)
     }, false)
-    imageRock.src = "../pics/doll.png"
+    imageDoll.src = "../pics/doll.png"
 }
 GameView.prototype.addFinishLine = function (canvas) {
     this.canvas.fillStyle = "#ff0000";
@@ -110,15 +117,15 @@ GameView.prototype.addFinishLine = function (canvas) {
 }
 GameView.prototype.addRocks = function (canvas) {
     // generate 100  postions 
-    let posArr = []
     let i=0
     while(i< 15){
         let x = 1000 * Math.random()
         let y = (600-100) * Math.random() + startingPoint
-        let rock = new Rock([x,y])
-        rock.draw([x,y] , this.canvas)
+        let rock = new Rock([x,y], this.imageRock)
+        rock.draw([x,y] , canvas)
         this.rocks.push(rock)
         i++
+        console.log(this.rocks)
     }
 }
 
