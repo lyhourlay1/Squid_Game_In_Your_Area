@@ -1,5 +1,5 @@
 class Player {
-    constructor(pos) {
+    constructor(pos=[500,540]) {
         this.position = pos
         let bodyImage = new Image()
         bodyImage.src = "../pics/body.png"

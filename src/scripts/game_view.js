@@ -1,6 +1,6 @@
-const Game = require("./Game")
+//const Game = require("./Game")
 // const Pieces = require("./pieces")
-
+import Game from "./game"
 import Player from "./player"
 import Rock from "./rock"
 const speed = 3
@@ -14,15 +14,17 @@ class GameView {
         this.game = game
         this.canvas = canvas
         this.rocks =[]
+        this.players =[]
+        this.canvaRef
         this.addFinishLine(canvas)
         this.addRocks(canvas)
         this.addDoll(canvas)
+        this.addPlayer()
     }
 }
 GameView.finishLine = 30
 
 GameView.prototype.keyHandler= function (player) {
-    player.draw([500,540], this.canvas)
     window.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowDown'){
             if (this.isValidMove([0, speed], player)) {
@@ -46,8 +48,11 @@ GameView.prototype.keyHandler= function (player) {
 GameView.prototype.isValidMove = function(dir, player){
     let newPos = [player.position[0] + dir[0], player.position[1] + dir[1]]
     //check if player new postion has passed the finished line
-    if (this.game.isOver(this.canvas, newPos)){
+    if (this.game.isOver(this.canvas, newPos, this.canvaRef)){
         //replay button 
+        this.canvas.clearRect(0,0, canvaWidth,canvaHeight)
+        this.rocks=[]
+        this.players[0].position = [500,540]
         console.log("replay")
     }
     else{
@@ -67,17 +72,28 @@ GameView.prototype.isValidMove = function(dir, player){
 
 }
 GameView.prototype.move = function (dir, player) {
-    this.canvas.clearRect(player.position[0], player.position[1], player.size[0] , player.size[1] )
+    // this.canvas.clearRect(player.position[0], player.position[1], player.size[0]+5 , player.size[1]+5 )
+    this.canvas.clearRect(0,30, canvaWidth, canvaHeight)
     player.position = [player.position[0] + dir[0], player.position[1] + dir[1]]
     player.draw(player.position, this.canvas)
+    this.rocks.forEach(el=>{
+        el.draw(el.position, this.canvas)
+    })
+    this.addDoll(this.canvas)
 }
 
 GameView.prototype.start = function (ctx) {
-    //console.log(Player)
-    const player = new Player([500,540])
-    this.keyHandler(player)
+    console.log(this.players)
+    this.keyHandler(this.players[0])
 }
-
+GameView.prototype.addPlayer= function() {
+    let i = 0
+    while (i < 1) {
+        let player = new Player([500,540])
+        player.draw([500,540], this.canvas)
+        this.players.push(player)
+        i++
+    }}
 
 GameView.prototype.addDoll = function (canvas) {
     let imageRock = new Image()
@@ -87,10 +103,10 @@ GameView.prototype.addDoll = function (canvas) {
     imageRock.src = "../pics/doll.png"
 }
 GameView.prototype.addFinishLine = function (canvas) {
-    canvas.beginPath();
-    canvas.moveTo(0, GameView.finishLine);
-    canvas.lineTo(1000, GameView.finishLine);
-    canvas.stroke();
+    this.canvas.fillStyle = "#ff0000";
+    this.canvas.fillRect(0, 0, 1000, startingPoint)
+    this.canvaRef = this.canvas.getImageData(0,0,1,1).data
+    this.addDoll(this.canvas)
 }
 GameView.prototype.addRocks = function (canvas) {
     // generate 100  postions 
@@ -104,5 +120,12 @@ GameView.prototype.addRocks = function (canvas) {
         this.rocks.push(rock)
         i++
     }
+}
+
+
+GameView.prototype.addGreenLight = function () {
+    this.canvas.fillStyle = "#00FF00";
+    this.canvas.fillRect(0,0,1000, startingPoint) 
+    this.addDoll(this.canvas)
 }
 export default GameView
