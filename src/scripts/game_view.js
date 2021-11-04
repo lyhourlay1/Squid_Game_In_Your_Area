@@ -34,7 +34,7 @@ GameView.prototype.keyHandler= function (player) {
             }
         }
         else if (event.key === 'ArrowUp') {
-            console.log(this.isValidMove([0, speed], player))
+            // console.log(this.isValidMove([0, speed], player))
             if (this.isValidMove([0, -1*speed], player)){
                 this.move([0, -1*speed], player)
             }
@@ -58,7 +58,7 @@ GameView.prototype.isValidMove = function(dir, player){
         // this.rocks=[]
         // this.players[0].position = [500,540]
         window.location.reload()
-        console.log("replay")
+        // console.log("replay")
     }
     else{
         let maxWidth= player.size[0]
@@ -83,7 +83,7 @@ GameView.prototype.move = function (dir, player) {
     this.canvas.clearRect(0, endingPoint+player.size[1]-10, canvaWidth, canvaHeight)
     player.position = [player.position[0] + dir[0], player.position[1] + dir[1]]
     player.draw(player.position, this.canvas)
-    console.log(this.rocks)
+    // console.log(this.rocks)
     this.rocks.forEach(el=>{
         el.draw(el.position, this.canvas)
     })
@@ -91,7 +91,7 @@ GameView.prototype.move = function (dir, player) {
 }
 
 GameView.prototype.start = function (ctx) {
-    console.log(this.players)
+    // console.log(this.players)
     this.keyHandler(this.players[0])
 }
 GameView.prototype.addPlayer= function() {
@@ -126,7 +126,7 @@ GameView.prototype.addRocks = function (canvas) {
         rock.draw([x,y] , canvas)
         this.rocks.push(rock)
         i++
-        console.log(this.rocks)
+        // console.log(this.rocks)
     }
 }
 GameView.prototype.addGreenLight = function () {

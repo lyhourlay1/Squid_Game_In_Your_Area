@@ -41,17 +41,17 @@ class Button {
 
     handleClickPause(timer){
         if( !timer.pause){
-            console.log(timer)
+            // console.log(timer)
             timer.pause = true
             clearInterval(timer.timeInterval)
             this.timeLeft = timer.timeLeft
-            console.log(timer)
+            // console.log(timer)
         }
     }
 
     handleClickContinue(timer){
         
-        console.log(timer.timeLeft)
+        // console.log(timer.timeLeft)
         if(timer.pause){
             timer.pause = false
             // timer.timeLeft = this.timeLeft

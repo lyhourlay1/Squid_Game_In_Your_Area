@@ -7,7 +7,7 @@ import Timer from "./scripts/timer"
 window.addEventListener('load', function (event) {
     
     //v.start(ctx)
-    console.log("webpack is working!")
+    // console.log("webpack is working!")
     const main = document.getElementById("main")
     const exam = new Example(main)
     let timer = new Timer(main, 1.5)
