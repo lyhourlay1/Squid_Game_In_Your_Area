@@ -11,7 +11,7 @@ class Button {
         this.addImages(src)
         src = "<p>Objective: Walk across the board to get to the finish line(green or red space). You can only walk when the music is playing or when green light is signaliing</p>"
         this.addImages(src)
-        src = "<p>Insturction: 1. Click Play button to start the game 2. Circle Button is for pause 3. Triangle button is for continue after pause 4. Square button is for end game 5. Press up, down, right, and left arrrow to navigate </p> "
+        src = "<p>Instruction: 1. Click Play button to start the game 2. Circle Button is for pause 3. Triangle button is for continue after pause 4. Square button is for end game 5. Press up, down, right, and left arrrow to navigate </p> "
         this.addImages(src)
 
         src = '<a href="https://www.linkedin.com/in/lyhour/"><img id="linkedin" src="./pics/linkedin.png" /></a>';
