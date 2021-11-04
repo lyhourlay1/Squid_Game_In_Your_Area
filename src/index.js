@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         // console.log(imageRock.width) //1627
         // console.log(imageRock.height) //2101
     }, false)
-    imageRock.src = "../pics/rock.png"
+    imageRock.src = "pics/rock.png"
     
     
     const button = document.createElement("button")
