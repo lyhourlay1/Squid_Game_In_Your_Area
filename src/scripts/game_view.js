@@ -108,7 +108,7 @@ GameView.prototype.addDoll = function (canvas) {
     imageDoll.addEventListener('load', function () {
         canvas.drawImage(imageDoll, 500, 0, imageDoll.width * 0.022, imageDoll.height * 0.022)
     }, false)
-    imageDoll.src = "../pics/doll.png"
+    imageDoll.src = "pics/doll.png"
 }
 GameView.prototype.addFinishLine = function (canvas) {
     this.canvas.fillStyle = "#ff0000";
