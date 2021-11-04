@@ -5,7 +5,7 @@ class Example {
         this.ele.addEventListener("click", ()=> this.handleClick())
     }
     handleClick(){
-        this.ele.children[0].innerText = "Red Line Green!"
+        this.ele.children[0].innerText = "Red Light Green Light!"
     }
 }
 export default Example

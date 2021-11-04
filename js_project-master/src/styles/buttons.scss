@@ -7,6 +7,7 @@ ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
+  text-align: left;
 } 
 
 #continue:hover{
@@ -19,4 +20,21 @@ ul{
 
 #end:hover{
     background-color: red;
+}
+
+p{
+    color: black;
+    //height: 150px;
+    width: 200px;
+}
+
+#github{
+    margin: 15px;
+    width: 35x;
+    height: 35px;
+}
+
+#linkedin{
+    width: 45x;
+    height: 45px;
 }

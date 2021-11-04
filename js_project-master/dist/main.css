@@ -12,6 +12,12 @@ div {
   justify-content: center;
 }
 
+canvas {
+  border: 3px;
+  border-color: green;
+  border-style: solid;
+}
+
 img {
   width: 30x;
   height: 30px;
@@ -21,6 +27,7 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  text-align: left;
 }
 
 #continue:hover {
@@ -33,4 +40,20 @@ ul {
 
 #end:hover {
   background-color: red;
+}
+
+p {
+  color: black;
+  width: 200px;
+}
+
+#github {
+  margin: 15px;
+  width: 35x;
+  height: 35px;
+}
+
+#linkedin {
+  width: 45x;
+  height: 45px;
 }

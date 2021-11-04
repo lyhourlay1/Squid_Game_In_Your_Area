@@ -1,16 +1,9 @@
 import GameView from "./game_view"
-const colorSpace = 'srgb'
-
 
 class Game {
-    constructor() {
-        // this.ele = ele
-        // this.ele.innerHTML = "<button> Play </button>"
-        // this.ele.addElementListener("click", ()=> this.handleClick())
+    constructor(timer) {
+        this.timer=timer
     }
-    // handleClick(){
-        
-    // }
 }
 
 Game.prototype.isOver = function (canvas, newPos, canvaRef) {
@@ -30,7 +23,7 @@ Game.prototype.win = function (newPos) {
     return false
 }
 Game.prototype.lose = function (canvas, canvaRef) {
-    if(canvas.getImageData(0,0,1,1).data[0] === canvaRef[0]) {
+    if(canvas.getImageData(0,0,1,1).data[0] === canvaRef[0] || this.timer.timeLeft<=0) {
         alert('you lost')
         return true
     }

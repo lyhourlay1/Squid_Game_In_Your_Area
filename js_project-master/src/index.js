@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         button.style.display = 'none';
         timer.beginClock()
         canvasEl.clearRect(0,0, canvas.width, canvas.height)
-        let game = new Game();
+        let game = new Game(timer);
         let v = new GameView(game,canvasEl, imageRock);
         v.start()
         window.interval = setInterval( () =>{ 
