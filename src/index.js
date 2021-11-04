@@ -4,7 +4,7 @@ import Game from "./scripts/game"
 import Button from "./scripts/buttons"
 import Timer from "./scripts/timer"
 
-window.addEventListener('load', function (event) {
+window.addEventListener('DOMContentLoaded', function (event) {
     
     //v.start(ctx)
     console.log("webpack is working!")
