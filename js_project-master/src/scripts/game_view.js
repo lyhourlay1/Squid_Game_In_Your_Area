@@ -5,8 +5,9 @@ import Player from "./player"
 import Rock from "./rock"
 const speed = 3
 const canvaWidth = 1000
-const canvaHeight =600
-const startingPoint = 40
+const canvaHeight = 600
+const startingPoint = 520
+const endingPoint = 30
 
 
 class GameView {
@@ -79,7 +80,7 @@ GameView.prototype.isValidMove = function(dir, player){
 }
 GameView.prototype.move = function (dir, player) {
     //this.canvas.clearRect(player.position[0], player.position[1], player.size[0]+5 , player.size[1]+5 )
-    this.canvas.clearRect(0, startingPoint+30, canvaWidth, canvaHeight)
+    this.canvas.clearRect(0, endingPoint+player.size[1]-10, canvaWidth, canvaHeight)
     player.position = [player.position[0] + dir[0], player.position[1] + dir[1]]
     player.draw(player.position, this.canvas)
     console.log(this.rocks)
@@ -105,22 +106,22 @@ GameView.prototype.addPlayer= function() {
 GameView.prototype.addDoll = function (canvas) {
     let imageDoll = new Image()
     imageDoll.addEventListener('load', function () {
-        canvas.drawImage(imageDoll, 500, 0, imageDoll.width * 0.03, imageDoll.height * 0.03)
+        canvas.drawImage(imageDoll, 500, 0, imageDoll.width * 0.022, imageDoll.height * 0.022)
     }, false)
     imageDoll.src = "../pics/doll.png"
 }
 GameView.prototype.addFinishLine = function (canvas) {
     this.canvas.fillStyle = "#ff0000";
-    this.canvas.fillRect(0, 0, 1000, startingPoint)
+    this.canvas.fillRect(0, 0, canvaWidth, endingPoint)
     this.canvaRef = this.canvas.getImageData(0,0,1,1).data
     this.addDoll(this.canvas)
 }
 GameView.prototype.addRocks = function (canvas) {
     // generate 100  postions 
     let i=0
-    while(i< 15){
-        let x = 1000 * Math.random()
-        let y = (600-100) * Math.random() + startingPoint
+    while(i< 45){
+        let x = canvaWidth * Math.random()
+        let y = (endingPoint - (startingPoint)) * Math.random() + (startingPoint)
         let rock = new Rock([x,y], this.imageRock)
         rock.draw([x,y] , canvas)
         this.rocks.push(rock)
@@ -128,11 +129,9 @@ GameView.prototype.addRocks = function (canvas) {
         console.log(this.rocks)
     }
 }
-
-
 GameView.prototype.addGreenLight = function () {
     this.canvas.fillStyle = "#00FF00";
-    this.canvas.fillRect(0,0,1000, startingPoint) 
+    this.canvas.fillRect(0,0,1000, endingPoint) 
     this.addDoll(this.canvas)
 }
 export default GameView

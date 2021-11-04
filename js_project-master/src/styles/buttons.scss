@@ -1,0 +1,22 @@
+img{
+    width: 30x;
+    height: 30px;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+} 
+
+#continue:hover{
+    background-color: green;
+}
+
+#pause:hover{
+    background-color: yellow;
+}
+
+#end:hover{
+    background-color: red;
+}

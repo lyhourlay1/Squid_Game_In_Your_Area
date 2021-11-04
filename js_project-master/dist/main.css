@@ -1,6 +1,36 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-#main {
+div {
   color: pink;
+  text-align: center;
+}
+
+.flex-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+img {
+  width: 30x;
+  height: 30px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#continue:hover {
+  background-color: green;
+}
+
+#pause:hover {
+  background-color: yellow;
+}
+
+#end:hover {
+  background-color: red;
 }
