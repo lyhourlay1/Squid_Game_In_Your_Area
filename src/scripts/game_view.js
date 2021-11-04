@@ -5,7 +5,7 @@ import Player from "./player"
 import Rock from "./rock"
 const speed = 3
 const canvaWidth = 1000
-const canvaHeight = 600
+const canvaHeight = 600 
 const startingPoint = 520
 const endingPoint = 30
 
