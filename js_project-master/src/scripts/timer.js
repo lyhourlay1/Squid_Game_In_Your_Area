@@ -3,29 +3,26 @@ class Timer {
     constructor(ele, time){
         this.clockEl = document.createElement("div")
         ele.appendChild(this.clockEl)
-        this.time = time
+        this.time = time * 60 * 1000
         //this.beginClock()
+        this.pause = true
+        this.timeInterval
+        this.timeLeft = this.time
     }
     beginClock(){
-        let endTime = new Date(Date.parse(new Date()) + this.time * 60 * 1000)
+        this.pause= false
+        let endTime = new Date(Date.parse(new Date()) + this.timeLeft)
         this.updateClock(endTime)
-        const timeInterval =setInterval(()=>this.updateClock(endTime), 1000)
+        this.timeInterval =setInterval(()=>this.updateClock(endTime), 1000)
     }
     
     updateClock(endTime){
-        let timeLeft = Date.parse(endTime)- Date.parse(new Date())
-        console.log(timeLeft)
-        var minLeft = Math.floor((timeLeft / 1000 / 60) % 60);
-        let secLeft = Math.floor((timeLeft / 1000) % 60);
+        this.timeLeft = Date.parse(endTime)- Date.parse(new Date())
+        //console.log(timeLeft)
+        var minLeft = Math.floor((this.timeLeft / 1000 / 60) % 60);
+        let secLeft = Math.floor((this.timeLeft / 1000) % 60);
         this.clockEl.innerHTML = minLeft +": " + secLeft
-        if (timeLeft <= 0) clearInterval(timeInterval)
-    }
-
-    pause(){
-
-    }
-    resume(){
-
+        if (this.timeLeft <= 0) clearInterval(this.timeInterval)
     }
 }
 export default Timer

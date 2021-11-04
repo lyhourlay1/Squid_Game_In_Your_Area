@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     const flexBox = document.getElementsByClassName("flex-container")
     const buttons = document.createElement("ul")
     flexBox[0].appendChild(buttons)
-    const button1 = new Button(buttons, canvasEl, canvas, imageRock)
+    const button1 = new Button(buttons, canvasEl, canvas, imageRock, timer)
     
     button.addEventListener("click", ()=> {
         button.style.display = 'block';
