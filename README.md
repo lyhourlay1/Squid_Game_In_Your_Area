@@ -1,4 +1,4 @@
-#Project Link:  https://lyhourlay1.github.io/js_project/
+# Project Link:  https://lyhourlay1.github.io/js_project/
 
 # Javascript-Project
 Squid Game(Red Light Green Light)
