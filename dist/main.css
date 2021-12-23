@@ -24,6 +24,9 @@ canvas {
   text-align: left;
   margin-top: 20px;
   margin-bottom: 20px;
+  border: hotpink solid 3px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 img {
