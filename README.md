@@ -1,4 +1,4 @@
-# Project Link:  https://lyhourlay1.github.io/js_project/
+# Project Link:  https://lyhourlay1.github.io/Squid_Game_In_Your_Area/
 
 # Squid Game(Red Light Green Light)
 
