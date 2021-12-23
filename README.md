@@ -1,7 +1,6 @@
-#Project Code: https://lyhourlay1.github.io/js_project/
+# Project Link:  https://lyhourlay1.github.io/Squid_Game_In_Your_Area/
 
-# Javascript-Project
-Squid Game(Red Light Green Light)
+# Squid Game(Red Light Green Light)
 
 Background and overview: This game is inspired from the “Red Light Green Light” game from Squid Games. In this game, the player needs to walk across the field within the time limit. Otherwise, the player will lose the game. The player is allowed to walk only while music is playing. If the player makes any moves during the time music is not playing, the player will lose the game. The player can walk forward, backward, left , right using the direction array keys from the computer keyboard. (up arrow, down arrow, left arrow, right arrow). Additional features like walking diagonally and increasing the walking speed by press-hold the key would be added if there is extra time to implement. 
 

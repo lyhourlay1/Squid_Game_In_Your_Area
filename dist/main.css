@@ -13,9 +13,17 @@ div {
 }
 
 canvas {
-  border: 3px;
-  border-color: green;
-  border-style: solid;
+  border: 5px solid grey;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.right-side-components > div {
+  color: pink;
+  width: 200px;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 img {
@@ -36,24 +44,27 @@ ul {
 
 #pause:hover {
   background-color: yellow;
+  border-radius: 45px;
 }
 
 #end:hover {
   background-color: red;
 }
 
-p {
-  color: black;
-  width: 200px;
-}
-
 #github {
-  margin: 15px;
-  width: 35x;
-  height: 35px;
+  width: 45x;
+  height: 45px;
 }
 
 #linkedin {
   width: 45x;
   height: 45px;
+}
+
+button.play-button {
+  width: 100px;
+  margin-bottom: 10px;
+  background: pink;
+  border: solid hotpink;
+  border-radius: 5px;
 }
