@@ -1,13 +1,19 @@
 .flex-container{
     display: flex;
     text-align: center;
-    justify-content: center;
-    background-color: black;  
-    
+    justify-content: center;  
 }
 canvas{
-    border: 3px;
-    border-color:green;
-    border-style: solid;
+    border: 5px solid grey;
+    border-radius: 10px;
+    margin-right: 10px ;
+}
+
+.right-side-components > div {
+    color: pink;
+    width: 200px;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 

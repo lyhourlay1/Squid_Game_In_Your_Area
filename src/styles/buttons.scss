@@ -16,25 +16,28 @@ ul{
 
 #pause:hover{
     background-color: yellow;
+    border-radius: 45px;
 }
 
 #end:hover{
     background-color: red;
-}
-
-p{
-    color: black;
-    //height: 150px;
-    width: 200px;
+    
 }
 
 #github{
-    margin: 15px;
-    width: 35x;
-    height: 35px;
+    width: 45x;
+    height: 45px;
 }
 
 #linkedin{
     width: 45x;
     height: 45px;
+}
+
+button.play-button {
+    width: 100px;
+    margin-bottom: 10px;
+    background: pink;
+    border: solid hotpink;
+    border-radius: 5px;
 }

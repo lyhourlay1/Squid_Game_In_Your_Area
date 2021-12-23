@@ -11,6 +11,8 @@ window.addEventListener('DOMContentLoaded', function (event) {
     const main = document.getElementById("main")
     const exam = new Example(main)
     let timer = new Timer(main, 1.5)
+    document.body.style.backgroundColor = "black";
+
     
     
     const canvas = document.getElementById("game-canvas")
@@ -29,6 +31,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     const button = document.createElement("button")
     // button.innerHTML = '<img src="./pics.circle.png" />';
     const node = document.createTextNode("Play")
+    button.classList.add("play-button")
     button.appendChild(node)
     main.appendChild(button)
 
