@@ -7,11 +7,11 @@ const speed = 3
 const canvaWidth = 1000
 const canvaHeight = 600 
 const startingPoint = 520
-const endingPoint = 30
+const endingPoint = 50
 
 
 class GameView {
-    constructor(game, canvas, image) {
+    constructor(game, canvas, image, imageBody) {
         this.game = game
         this.canvas = canvas
         this.rocks =[]
@@ -19,12 +19,13 @@ class GameView {
         this.canvaRef
         this.addFinishLine(canvas)
         this.imageRock = image
+        this.imageBody = imageBody
         this.addRocks(canvas)
         this.addDoll(canvas)
         this.addPlayer()
     }
 }
-GameView.finishLine = 30
+GameView.finishLine = endingPoint
 
 GameView.prototype.keyHandler= function (player) {
     window.addEventListener('keydown', (event) => {
@@ -80,7 +81,7 @@ GameView.prototype.isValidMove = function(dir, player){
 }
 GameView.prototype.move = function (dir, player) {
     //this.canvas.clearRect(player.position[0], player.position[1], player.size[0]+5 , player.size[1]+5 )
-    this.canvas.clearRect(0, endingPoint+player.size[1]-10, canvaWidth, canvaHeight)
+    this.canvas.clearRect(0, endingPoint+player.size[1]-40, canvaWidth, canvaHeight)
     player.position = [player.position[0] + dir[0], player.position[1] + dir[1]]
     player.draw(player.position, this.canvas)
     // console.log(this.rocks)
@@ -97,7 +98,7 @@ GameView.prototype.start = function (ctx) {
 GameView.prototype.addPlayer= function() {
     let i = 0
     while (i < 1) {
-        let player = new Player([500,540])
+        let player = new Player([500,540], this.imageBody)
         player.draw([500,540], this.canvas)
         this.players.push(player)
         i++
@@ -119,7 +120,7 @@ GameView.prototype.addFinishLine = function (canvas) {
 GameView.prototype.addRocks = function (canvas) {
     // generate 100  postions 
     let i=0
-    while(i< 45){
+    while(i< 25){
         let x = canvaWidth * Math.random()
         let y = (endingPoint - (startingPoint)) * Math.random() + (startingPoint)
         let rock = new Rock([x,y], this.imageRock)

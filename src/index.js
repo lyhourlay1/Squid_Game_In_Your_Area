@@ -27,6 +27,13 @@ window.addEventListener('DOMContentLoaded', function (event) {
     }, false)
     imageRock.src = "pics/rock.png"
     
+    let imageBody = new Image()
+    imageBody.addEventListener('load', function () {
+        // console.log(imageRock.width) //1627
+        // console.log(imageRock.height) //2101
+    }, false)
+    imageBody.src = "pics/body.png"
+    
     
     const button = document.createElement("button")
     // button.innerHTML = '<img src="./pics.circle.png" />';
@@ -46,7 +53,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         timer.beginClock()
         canvasEl.clearRect(0,0, canvas.width, canvas.height)
         let game = new Game(timer);
-        let v = new GameView(game,canvasEl, imageRock);
+        let v = new GameView(game,canvasEl, imageRock, imageBody);
         v.start()
         window.interval = setInterval( () =>{ 
             document.getElementById("hwa").play() 
