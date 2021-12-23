@@ -27,6 +27,13 @@ window.addEventListener('DOMContentLoaded', function (event) {
     }, false)
     imageRock.src = "pics/rock.png"
     
+    // let imageBody = new Image()
+    // imageBody.addEventListener('load', function () {
+    //     // console.log(imageRock.width) //1627
+    //     // console.log(imageRock.height) //2101
+    // }, false)
+    // imageBody.src = "pics/body.png"
+    
     
     const button = document.createElement("button")
     // button.innerHTML = '<img src="./pics.circle.png" />';
