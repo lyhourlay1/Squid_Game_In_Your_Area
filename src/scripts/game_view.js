@@ -11,7 +11,7 @@ const endingPoint = 50
 
 
 class GameView {
-    constructor(game, canvas, image) {
+    constructor(game, canvas, image, imageBody) {
         this.game = game
         this.canvas = canvas
         this.rocks =[]
@@ -19,6 +19,7 @@ class GameView {
         this.canvaRef
         this.addFinishLine(canvas)
         this.imageRock = image
+        this.imageBody = imageBody
         this.addRocks(canvas)
         this.addDoll(canvas)
         this.addPlayer()
@@ -97,7 +98,7 @@ GameView.prototype.start = function (ctx) {
 GameView.prototype.addPlayer= function() {
     let i = 0
     while (i < 1) {
-        let player = new Player([500,540])
+        let player = new Player([500,540], this.imageBody)
         player.draw([500,540], this.canvas)
         this.players.push(player)
         i++
