@@ -84,7 +84,7 @@ GameView.prototype.move = function (dir, player) {
     this.canvas.clearRect(0, endingPoint+player.size[1]-40, canvaWidth, canvaHeight)
     player.position = [player.position[0] + dir[0], player.position[1] + dir[1]]
     player.draw(player.position, this.canvas)
-    console.log(this.rocks)
+    // console.log(this.rocks)
     this.rocks.forEach(el=>{
         el.draw(el.position, this.canvas)
     })
@@ -92,7 +92,7 @@ GameView.prototype.move = function (dir, player) {
 }
 
 GameView.prototype.start = function (ctx) {
-    console.log(this.players)
+    // console.log(this.players)
     this.keyHandler(this.players[0])
 }
 GameView.prototype.addPlayer= function() {
