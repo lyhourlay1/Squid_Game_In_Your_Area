@@ -2,8 +2,8 @@ import Example from "./scripts/example"
 import GameView from "./scripts/game_view"
 import Game from "./scripts/game"
 import Button from "./scripts/buttons"
+import Instruction from "./scripts/instruction"
 import Timer from "./scripts/timer"
-
 window.addEventListener('DOMContentLoaded', function (event) {
     
     //v.start(ctx)
@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     const exam = new Example(main)
     let timer = new Timer(main, 1.5)
     document.body.style.backgroundColor = "black";
-
+    
     
     
     const canvas = document.getElementById("game-canvas")
@@ -45,22 +45,31 @@ window.addEventListener('DOMContentLoaded', function (event) {
     const flexBox = document.getElementsByClassName("flex-container")
     const buttons = document.createElement("ul")
     flexBox[0].appendChild(buttons)
-    const button1 = new Button(buttons, canvasEl, canvas, imageRock, timer)
+    const button1= new Instruction(buttons)
+
     
     button.addEventListener("click", ()=> {
         button.style.display = 'block';
         button.style.display = 'none';
         timer.beginClock()
         canvasEl.clearRect(0,0, canvas.width, canvas.height)
-        let game = new Game(timer);
-        let v = new GameView(game,canvasEl, imageRock, imageBody);
+        const game = new Game(timer);
+        const v = new GameView(game,canvasEl, imageRock, imageBody);
         v.start()
-        window.interval = setInterval( () =>{ 
-            document.getElementById("hwa").play() 
+        const buttonNav = new Button(buttons, canvasEl, canvas, imageRock, timer, v)
+        setTimeout(()=>{
+            document.getElementById("hwa").play()
             v.addGreenLight()
             setTimeout(()=>{
                 v.addFinishLine()
             },4500)
+        },1000)
+        window.interval = setInterval( () =>{ 
+            window.time = setTimeout(()=>{
+                v.addFinishLine()
+            },4500)
+            document.getElementById("hwa").play() 
+            v.addGreenLight()
         }, 7000)
     })
 })

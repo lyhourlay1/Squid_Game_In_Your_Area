@@ -1,12 +1,14 @@
 .flex-container{
     display: flex;
     text-align: center;
-    justify-content: center;  
+    justify-content: center; 
+    position: relative;
 }
 canvas{
     border: 5px solid grey;
     border-radius: 10px;
     margin-right: 10px ;
+    // margin-top: 120px;
 }
 
 .right-side-components > div {
@@ -19,4 +21,21 @@ canvas{
     border-radius: 5px;
     padding: 5px
 }
+#game-canvas{
+    z-index: 2;
+}
+#pause-canvas{
+    z-index: 3;
+    background-color: grey;
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    display:none;
+    justify-content:space-evenly;
+    flex-direction: column;
+}
+
 
