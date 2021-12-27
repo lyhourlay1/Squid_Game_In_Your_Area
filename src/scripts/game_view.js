@@ -7,7 +7,7 @@ const speed = 3
 const canvaWidth = 1000
 const canvaHeight = 600
 const startingPoint = 520
-const endingPoint = 50
+const endingPoint = 60
 
 
 class GameView {
@@ -107,15 +107,25 @@ GameView.prototype.addPlayer= function() {
 GameView.prototype.addDoll = function (canvas) {
     let imageDoll = new Image()
     imageDoll.addEventListener('load', function () {
-        canvas.drawImage(imageDoll, 500, 0, imageDoll.width * 0.022, imageDoll.height * 0.022)
+        let i = 0
+        setInterval(() => {
+            canvas.drawImage(imageDoll, i, 1, imageDoll.width * 0.022, imageDoll.height * 0.022)
+            canvas.clearRect(0,0,i+5,55)
+            i+=20
+            if(i===1020){
+                i= 0
+            }
+        }, 100);
     }, false)
     imageDoll.src = "pics/doll.png"
 }
 GameView.prototype.addFinishLine = function (canvas) {
     this.canvas.fillStyle = "#ff0000";
-    this.canvas.fillRect(0, 0, canvaWidth, endingPoint)
+    // this.canvas.fillRect(0, 0, canvaWidth, endingPoint*.1)
+    this.canvas.fillRect(0,endingPoint,1000,5) 
+
     this.canvaRef = this.canvas.getImageData(0,0,1,1).data
-    this.addDoll(this.canvas)
+    // this.addDoll(this.canvas)
 }
 GameView.prototype.addRocks = function (canvas) {
     // generate 100  postions 
@@ -132,7 +142,8 @@ GameView.prototype.addRocks = function (canvas) {
 }
 GameView.prototype.addGreenLight = function () {
     this.canvas.fillStyle = "#00FF00";
-    this.canvas.fillRect(0,0,1000, endingPoint) 
-    this.addDoll(this.canvas)
+    // this.canvas.fillRect(0,0,1000, endingPoint*.10) 
+    this.canvas.fillRect(0,endingPoint,1000,5) 
+    // this.addDoll(this.canvas)
 }
 export default GameView
