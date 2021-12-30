@@ -1,3 +1,4 @@
+import Modal from "./modal"
 
 class Timer {
     constructor(ele, time){
@@ -20,6 +21,9 @@ class Timer {
     updateClock(endTime){
         this.timeLeft = Date.parse(endTime)- Date.parse(new Date())
         //console.log(timeLeft)
+        if(this.timeLeft<=0){
+            new Modal("You LOST!", this)
+        }
         var minLeft = Math.floor((this.timeLeft / 1000 / 60) % 60);
         let secLeft = Math.floor((this.timeLeft / 1000) % 60);
         

@@ -46,6 +46,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     
     const flexBox = document.getElementsByClassName("flex-container")
     const buttons = document.createElement("ul")
+    button.classList.add("right-flex")
     flexBox[0].appendChild(buttons)
 
 
@@ -55,6 +56,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     button.addEventListener("click", ()=> {
         button.style.display = 'block';
         button.style.display = 'none';
+        buttons.style.marginTop= '80px';
         timer.beginClock()
         canvasEl.clearRect(0,0, canvas.width, canvas.height)
         const game = new Game(timer);
