@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', function (event) {
     //v.start(ctx)
     // console.log("webpack is working!")
     const main = document.getElementById("main")
-    const exam = new Example(main)
     let timer = new Timer(main, 1.5)
     document.body.style.backgroundColor = "black";
     
@@ -34,17 +33,21 @@ window.addEventListener('DOMContentLoaded', function (event) {
     }, false)
     imageBody.src = "pics/body.png"
     
+    const flexLeft = document.getElementsByClassName("top-left-flex")
     
     const button = document.createElement("button")
     // button.innerHTML = '<img src="./pics.circle.png" />';
     const node = document.createTextNode("Play")
     button.classList.add("play-button")
     button.appendChild(node)
-    main.appendChild(button)
-
+    const exam = new Example(flexLeft[0])
+    flexLeft[0].appendChild(button)
+    
     const flexBox = document.getElementsByClassName("flex-container")
     const buttons = document.createElement("ul")
     flexBox[0].appendChild(buttons)
+
+
     const button1= new Instruction(buttons)
 
     
