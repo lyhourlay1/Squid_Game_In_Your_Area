@@ -8,6 +8,7 @@ ul{
   margin: 0;
   padding: 0;
   text-align: left;
+  margin-top: 110px;
 } 
 
 #continue:hover{
@@ -40,4 +41,8 @@ button.play-button {
     background: pink;
     border: solid hotpink;
     border-radius: 5px;
+}
+
+div#pause-canvas {
+    font-size: 40px;
 }

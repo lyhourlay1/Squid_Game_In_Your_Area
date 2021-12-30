@@ -1,7 +1,9 @@
+import Modal from "./modal"
 
 class Timer {
     constructor(ele, time){
         this.clockEl = document.createElement("div")
+        this.clockEl.classList.add("timer")
         ele.appendChild(this.clockEl)
         this.time = time * 60 * 1000
         //this.beginClock()
@@ -19,9 +21,16 @@ class Timer {
     updateClock(endTime){
         this.timeLeft = Date.parse(endTime)- Date.parse(new Date())
         //console.log(timeLeft)
+        if(this.timeLeft<=0){
+            new Modal("You LOST!", this)
+        }
         var minLeft = Math.floor((this.timeLeft / 1000 / 60) % 60);
         let secLeft = Math.floor((this.timeLeft / 1000) % 60);
+        
         this.clockEl.innerHTML = minLeft +": " + secLeft
+        
+        // this.clockEl.append(document.createTextNode(minLeft +": " + secLeft))
+        // debugger
         if (this.timeLeft <= 0) clearInterval(this.timeInterval)
     }
 }

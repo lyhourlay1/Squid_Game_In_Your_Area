@@ -5,7 +5,7 @@ class Button {
         // this.ele = ele;
         // let src = '<img id="pause" src="./pics/circle.png" />';
         // this.addImages(src)
-        // src = '<img id="continue" src="./pics/triangle.png" />';
+        // let src = '<img id="continue" src="./pics/triangle.png" />';
         // this.addImages(src)
         // src = '<img id="end" src="./pics/square.png" />';
         // this.addImages(src)
@@ -39,6 +39,7 @@ class Button {
     }
 
     handleClickEnd() {
+        //debugger
         window.location.reload()  
     }
 
@@ -54,8 +55,6 @@ class Button {
             clearInterval(timer.timeInterval)
             this.timeLeft = timer.timeLeft
             this.v.addFinishLine()
-
-            // console.log(timer)
         }
         // const canvas = document.getElementById("pause-canvas")
         // canvas.classList.add("pause");

@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     //v.start(ctx)
     // console.log("webpack is working!")
     const main = document.getElementById("main")
-    const exam = new Example(main)
+    const flexLeft = document.getElementsByClassName("top-left-flex")
     let timer = new Timer(main, 1.5)
     document.body.style.backgroundColor = "black";
     
@@ -34,23 +34,29 @@ window.addEventListener('DOMContentLoaded', function (event) {
     }, false)
     imageBody.src = "pics/body.png"
     
-    
+    // let timer = new Timer(flexLeft[0], 1.5)
+
     const button = document.createElement("button")
     // button.innerHTML = '<img src="./pics.circle.png" />';
     const node = document.createTextNode("Play")
     button.classList.add("play-button")
     button.appendChild(node)
-    main.appendChild(button)
-
+    const exam = new Example(flexLeft[0])
+    flexLeft[0].appendChild(button)
+    
     const flexBox = document.getElementsByClassName("flex-container")
     const buttons = document.createElement("ul")
+    button.classList.add("right-flex")
     flexBox[0].appendChild(buttons)
+
+
     const button1= new Instruction(buttons)
 
     
     button.addEventListener("click", ()=> {
         button.style.display = 'block';
         button.style.display = 'none';
+        buttons.style.marginTop= '80px';
         timer.beginClock()
         canvasEl.clearRect(0,0, canvas.width, canvas.height)
         const game = new Game(timer);
@@ -63,7 +69,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
             setTimeout(()=>{
                 v.addFinishLine()
             },4500)
-        },1000)
+        },10)
         window.interval = setInterval( () =>{ 
             window.time = setTimeout(()=>{
                 v.addFinishLine()
