@@ -39,7 +39,7 @@ class Button {
     }
 
     handleClickEnd() {
-        debugger
+        //debugger
         window.location.reload()  
     }
 

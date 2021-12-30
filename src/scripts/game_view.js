@@ -37,7 +37,7 @@ GameView.prototype.keyHandler= function (player) {
             }
         }
         else if (event.key === 'ArrowUp') {
-            console.log(this.isValidMove([0, speed], player))
+            // console.log(this.isValidMove([0, speed], player))
             if (this.isValidMove([0, -1*speed], player)){
                 this.move([0, -1*speed], player)
             }
@@ -150,7 +150,7 @@ GameView.prototype.addRocks = function (canvas) {
         rock.draw([x,y] , canvas)
         this.rocks.push(rock)
         i++
-        console.log(this.rocks)
+        // console.log(this.rocks)
     }
 }
 GameView.prototype.addGreenLight = function () {

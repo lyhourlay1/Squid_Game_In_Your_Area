@@ -27,7 +27,7 @@ Game.prototype.win = function (newPos) {
 }
 Game.prototype.lose = function (canvas, canvaRef) {
     if(canvas.getImageData(0,endingPoint+2,1,1).data[0] !== canvaRef[0] || this.timer.timeLeft<=0) {
-        console.log(canvas.getImageData(0,endingPoint+2,1,1).data[0])
+        // console.log(canvas.getImageData(0,endingPoint+2,1,1).data[0])
         // new Modal('you lost')
         return true
     }
