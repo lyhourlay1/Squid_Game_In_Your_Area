@@ -1,4 +1,5 @@
 import GameView from "./game_view"
+// import Modal from "./modal"
 const endingPoint = 60
 
 
@@ -19,7 +20,7 @@ Game.prototype.isOver = function (canvas, newPos, canvaRef) {
 
 Game.prototype.win = function (newPos) {
     if (newPos[1]< GameView.finishLine){
-        alert('you win')
+        // new Modal('you win')
         return true
     }
     return false
@@ -27,7 +28,7 @@ Game.prototype.win = function (newPos) {
 Game.prototype.lose = function (canvas, canvaRef) {
     if(canvas.getImageData(0,endingPoint+2,1,1).data[0] !== canvaRef[0] || this.timer.timeLeft<=0) {
         console.log(canvas.getImageData(0,endingPoint+2,1,1).data[0])
-        alert('you lost')
+        // new Modal('you lost')
         return true
     }
     return false

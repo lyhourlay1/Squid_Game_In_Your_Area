@@ -54,8 +54,6 @@ class Button {
             clearInterval(timer.timeInterval)
             this.timeLeft = timer.timeLeft
             this.v.addFinishLine()
-
-            // console.log(timer)
         }
         // const canvas = document.getElementById("pause-canvas")
         // canvas.classList.add("pause");

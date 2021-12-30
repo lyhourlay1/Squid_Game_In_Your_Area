@@ -3,6 +3,8 @@
 import Game from "./game"
 import Player from "./player"
 import Rock from "./rock"
+import Modal from "./modal"
+
 const speed = 3
 const canvaWidth = 1000
 const canvaHeight = 600
@@ -52,14 +54,25 @@ GameView.prototype.keyHandler= function (player) {
 GameView.prototype.isValidMove = function(dir, player){
     let newPos = [player.position[0] + dir[0], player.position[1] + dir[1]]
     //check if player new postion has passed the finished line
-    if (this.game.isOver(this.canvas, newPos, this.canvaRef)){
-        //replay button 
-        // clearInterval(window.interval)
-        // this.canvas.clearRect(0,0, canvaWidth,canvaHeight)
-        // this.rocks=[]
-        // this.players[0].position = [500,540]
-        window.location.reload()
-        console.log("replay")
+    // if (this.game.isOver(this.canvas, newPos, this.canvaRef)){
+    //     //replay button 
+    //     // clearInterval(window.interval)
+    //     // this.canvas.clearRect(0,0, canvaWidth,canvaHeight)
+    //     // this.rocks=[]
+    //     // this.players[0].position = [500,540]
+    //     window.location.reload()
+    //     console.log("replay")
+    // }
+    if(this.game.win(newPos)){
+        // window.location.reload()
+        new Modal('you win', this.game.timer)
+    }
+    else if(this.game.lose(this.canvas, this.canvaRef)){
+        // window.location.reload()
+        // setTimeout(() => {
+        //     new Modal('you lost')
+        //     }, 2000);
+        new Modal('you lost', this.game.timer)
     }
     else{
         let maxWidth= player.size[0]
