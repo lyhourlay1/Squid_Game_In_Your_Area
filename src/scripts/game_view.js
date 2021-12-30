@@ -5,7 +5,7 @@ import Player from "./player"
 import Rock from "./rock"
 import Modal from "./modal"
 
-const speed = 3
+const speed = 6
 const canvaWidth = 1000
 const canvaHeight = 600
 const startingPoint = 520
@@ -86,7 +86,7 @@ GameView.prototype.isValidMove = function(dir, player){
             let rockX = this.rocks[i].position[0]
             let rockY = this.rocks[i].position[1]
             if ((rockY + this.rocks[i].size[1]) < newPos[1]) maxHeight = this.rocks[i].size[1]
-            if (Math.abs(newPos[1] - rockY) < (maxHeight+speed) && Math.abs(newPos[0] - rockX) < (maxWidth+speed))  return false
+            if (Math.abs(newPos[1] - rockY) < (maxHeight+speed-4) && Math.abs(newPos[0] - rockX) < (maxWidth+speed-4))  return false
         }
         return true
     }

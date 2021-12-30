@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
             setTimeout(()=>{
                 v.addFinishLine()
             },4500)
-        },1000)
+        },10)
         window.interval = setInterval( () =>{ 
             window.time = setTimeout(()=>{
                 v.addFinishLine()

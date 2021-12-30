@@ -5,6 +5,7 @@ class Instruction {
         this.ele = ele;
         let src = '<img id="pause" src="./pics/circle.png" />';
         this.addImages(src)
+        
         src = '<img id="continue" src="./pics/triangle.png" />';
         this.addImages(src)
         this.addButtonsOnPause(src)
