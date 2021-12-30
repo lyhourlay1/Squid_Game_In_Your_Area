@@ -122,3 +122,11 @@ div#pause-canvas {
 .close:hover {
   background: grey;
 }
+
+div#main {
+    width: 1010px;
+    position: fixed;
+    left: 50%;
+    transform: translate(-60%, 0);
+    margin-top: 55px;
+}
